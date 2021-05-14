@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <script src="confetti.js"></script>
+    <script src="https://kit.fontawesome.com/a59b9b09ab.js" crossorigin="anonymous"></script>
+    <link href="fontawesome/css/all.css" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="icon" href="2.jpeg">
+    <style>
+        body {
+            background-color: rgb(7, 7, 32);
+            padding: 20px;
+        }
+        
+        * {
+            padding: 0pc;
+            margin: 0px;
+            box-sizing: border-box;
+        }
+        
+        .container {
+            max-width: 100%;
+            height: 95vh;
+            box-shadow: inset 0px 0px 40px rgb(56, 56, 56);
+            border-radius: 20px;
+            position: relative;
+        }
+        
+        .light {
+            position: absolute;
+            left: 170px;
+            top: 40px;
+            z-index: 10;
+            height: 400px;
+            width: 860px;
+            /* margin-left: 150px;
+            margin-top: 100px; 
+            filter: blur(2px);*/
+            transform: rotate(30deg);
+            clip-path: polygon(0 30%, 100% 0, 100% 100%, 0 71%);
+            background: linear-gradient(90deg, transparent, rgba(247, 244, 244, .2), rgba(247, 244, 244, .97), rgba(206, 201, 201, .9), transparent);
+            background-repeat: no-repeat;
+            background-size: 0;
+            /* animation: animation 2s ease-out; */
+        }
+        
+        @keyframes animation {
+            0% {
+                background-size: 0 100%;
+            }
+            100% {
+                background-size: 100% 100%;
+            }
+        }
+        
+        .light::after {
+            position: absolute;
+            content: "";
+            width: 100px;
+            height: 180px;
+            border: 2px solid white;
+            background-color: wheat;
+            clip-path: polygon(0 30%, 100% 0, 100% 100%, 0 71%);
+            top: 110px;
+            left: -40px;
+            /* tra6sform: rotate(30deg); */
+        }
+        
+        .lamp {
+            width: 200px;
+            height: 600px;
+            border-left: 4px solid wheat;
+            border-top: 4px solid white;
+            border-radius: 40px 20px 0px 0px;
+            position: absolute;
+            top: 90px;
+            left: 80px;
+        }
+        
+        .lamp::before {
+            width: 200px;
+            height: 20px;
+            border-radius: 50%;
+            background-color: wheat;
+            position: absolute;
+            content: "";
+            bottom: 0;
+            left: -80px;
+        }
+        
+        .lamp::after {
+            width: 80px;
+            height: 50px;
+            border-radius: 9px;
+            background-color: white;
+            transform: rotate(30deg);
+            position: absolute;
+            content: "";
+            top: 0;
+            left: 180px;
+        }
+        
+        #powerof {
+            color: wheat;
+            position: absolute;
+            bottom: 10px;
+            left: 240px;
+            font-size: 50px;
+            padding: 15px;
+            color: rgb(95, 93, 91);
+            /*  */
+            border-radius: 50%;
+            cursor: pointer;
+            box-shadow: 0px 0px 10px rgb(77, 75, 75);
+        }
+        
+        #powerof:active {
+            color: aqua;
+            text-shadow: 0px 0px 3px aqua, 0px 0px 4px aqua, inset 0px 0px 5px aqua;
+        }
+        
+        .eid {
+            width: 550px;
+            border-radius: 20px;
+            height: 350px;
+            /* border: 2px solid white; */
+            position: absolute;
+            right: 50px;
+            bottom: 0;
+            text-align: center;
+            font-size: 90px;
+            color: white;
+            padding-top: 170px;
+        }
+        /* body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            background: #111;
+        } */
+        
+        .backround {
+            position: fixed;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            min-width: 100%;
+            width: auto;
+            height: auto;
+            z-index: -9999;
+            visibility: hidden;
+        }
+        
+        .eidvideo {
+            width: 550px;
+            border-radius: 20px;
+            height: 350px;
+            /* border: 2px solid white; */
+            position: absolute;
+            right: 50px;
+            bottom: 0;
+            z-index: 99999999;
+        }
+    </style>
+</head>
+
+<body>
+    <video autoplay muted loop class="backround" src="video/Pexels Videos 1943483.mp4"> </video>
+
+    <div class="container">
+        <!-- <div class="bix"></div> -->
+        <div class="lamp">
+            <div class="light"></div>
+        </div>
+        <i id="powerof" onclick="bright()" class="fas fa-power-off"></i>
+        <div class="eid">
+
+        </div>
+    </div>
+
+</body>
+<script>
+    function bright() {
+        //
+        // a.style.animation = " animation 2s ease-out";
+        var e = document.querySelector(".light");
+        e.style.backgroundSize = "100%";
+        e.style.animation = "  animation 2s ease-out ";
+        var newone = e.cloneNode(true);
+        e.parentNode.replaceChild(newone, e);
+
+
+        var a = document.querySelector("#powerof ");
+        a.style.color = "aqua";
+        a.style.textShadow = " 0px 0px 43px aqua, 0px 0px 45px aqua";
+
+        setTimeout(() => {
+            setInterval(() => {
+                document.querySelector(".backround").style.visibility = "visible";
+            }, 400);
+
+            writetext();
+            startConfetti();
+
+        }, 1000);
+
+    }
+
+    var text1 = document.querySelector(".eid");
+    const text = "Eid-Mubarak";
+    let i = 0;
+
+    function writetext() {
+        text1.innerText = text.slice(0, i);
+        i++;
+        // if (i > text.length) {
+        //     i = 0;
+        // }
+        setTimeout(writetext, 400)
+    }
+</script>
+
+</html>
